@@ -1,14 +1,19 @@
-from .variaveisEFuncoesAuxiliares import *
+from .arquivoAuxiliar import seguradosComAliquotaProgressiva, seguradosSemAliquotaProgressiva, tiposDeModalidade
 
-def calcularINSS(salario=0, tipoDeSegurado="", dependentes=0, pensao=0, modalidade=""):
+def calcularINSS(salario=0.0, tipoDeSegurado="", pensao=0.0, dependentes=0, modalidade=""):
+    deducaoPorDependente = 189.59
+    descontoSimplificado = 607.20
+
+    deducaoTotalDosDependente = deducaoPorDependente * dependentes
+    
     if tipoDeSegurado in seguradosComAliquotaProgressiva:
 
         # (Empregado, Empregado Doméstico e Trabalhador Avulso)
-        # Salário de Contribuição (R$) | Alíquota progressiva para fins de recolhimento ao INSS
-        # Até 1.518,00			       | 7,5%
-        # De 1.518,01 a 2.793,88	   | 9%
-        # De 2.793,89 até 4.190,83	   | 12%
-        # De 4.190,84 até 8.157,41	   | 14%
+        # Salário de Contribuição (R$) | Alíquota | Dedução
+        # Até 1.518,00			       | 7,5%     | 
+        # De 1.518,01 a 2.793,88	   | 9%       | 22,77
+        # De 2.793,89 até 4.190,83	   | 12%      | 106,59
+        # De 4.190,84 até 8.157,41	   | 14%      | 190,40
        
         if salario <= 1518:
             aliquotaDoINSS = 0.075
@@ -45,56 +50,53 @@ def calcularINSS(salario=0, tipoDeSegurado="", dependentes=0, pensao=0, modalida
         if modalidade == tiposDeModalidade[2]: # baixa renda
             salario = 1518.00
             aliquotaDoINSS = 0.05
+            deducaoDoINSS = 0
             contribuicaoDoINSS = salario * aliquotaDoINSS
 
         elif modalidade == tiposDeModalidade[1]: # plano simplificado
             salario = 1518.00
             aliquotaDoINSS = 0.11
+            deducaoDoINSS = 0
             contribuicaoDoINSS = salario * aliquotaDoINSS
 
         elif modalidade == tiposDeModalidade[0]: # plano normal
             if salario < 1518.00:
                 salario = 1518.00
                 aliquotaDoINSS = 0.20
+                deducaoDoINSS = 0
                 contribuicaoDoINSS = salario * aliquotaDoINSS
 
             else:
                 aliquotaDoINSS = 0.20
+                deducaoDoINSS = 0
                 contribuicaoDoINSS = salario * aliquotaDoINSS
 
                 if contribuicaoDoINSS > 1631.48:
                     contribuicaoDoINSS = 1631.48
 
-    elif tipoDeSegurado == seguradosSemAliquotaProgressiva[2]: # segurado especial 
+        elif tipoDeSegurado == seguradosSemAliquotaProgressiva[2]: # segurado especial 
 
-        if modalidade == tiposDeModalidade[3]: # contribuição obrigatória
-            aliquotaDoINSS = 0.013
-            contribuicaoDoINSS = salario * aliquotaDoINSS
+            if modalidade == tiposDeModalidade[3]: # contribuição obrigatória
+                aliquotaDoINSS = 0.013
+                deducaoDoINSS = 0
+                contribuicaoDoINSS = salario * aliquotaDoINSS
 
-            if contribuicaoDoINSS > 1631.48:
-                    contribuicaoDoINSS = 1631.48
+                if contribuicaoDoINSS > 1631.48:
+                        contribuicaoDoINSS = 1631.48
 
-        elif modalidade == tiposDeModalidade[4]: # contribuição optativa
-            aliquotaDoINSS = 0.20
-            contribuicaoDoINSS = salario * aliquotaDoINSS
+            elif modalidade == tiposDeModalidade[4]: # contribuição optativa
+                aliquotaDoINSS = 0.20
+                deducaoDoINSS = 0
+                contribuicaoDoINSS = salario * aliquotaDoINSS
 
-            if contribuicaoDoINSS > 1631.48:
-                    contribuicaoDoINSS = 1631.48
+                if contribuicaoDoINSS > 1631.48:
+                        contribuicaoDoINSS = 1631.48
 
-    # Desconto legal é dado pela soma da contribuição do INSS, da pensão e da dedução total dos dependentes
-    # Verificamos o desconto simplificado e o desconto total na formulação da base de cálculo do imposto de renda e consideramos a mais vantajosa
-
-    deducaoTotalDosDependente = deducaoPorDependente * dependentes
+    # O desconto legal é dado pela soma da contribuição do INSS, da pensão e da dedução total dos dependentes
     descontoTotal = contribuicaoDoINSS + pensao + deducaoTotalDosDependente
 
+    # Verificamos o desconto simplificado e o desconto total na formulação da base de cálculo do imposto de renda e consideramos a mais vantajosa
     baseTotal = salario - descontoTotal
     baseSimplificada = salario - descontoSimplificado
 
-    if baseTotal < baseSimplificada:
-        baseDeCalculo = round(baseTotal, 2)
-        descontoSimplificado = 0
-    elif baseSimplificada < baseTotal:
-        baseDeCalculo = round(baseSimplificada, 2)
-        contribuicaoDoINSS = 0
-
-    return contribuicaoDoINSS, aliquotaDoINSS, deducaoDoINSS, baseDeCalculo, descontoSimplificado, descontoTotal
+    return salario, round(contribuicaoDoINSS, 2), round(aliquotaDoINSS, 2), deducaoDoINSS, baseSimplificada, baseTotal, descontoSimplificado, descontoTotal
