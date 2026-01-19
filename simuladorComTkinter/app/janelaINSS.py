@@ -94,7 +94,7 @@ def resultadoINSS(janela, telaInicial, salario, segurado, pensao, dependentes, m
 
     # Alíquota do INSS
     Label(frame[1], text="Alíquota: ", width=18, bd=1, relief="solid", anchor="w", font=("Segoe UI", 10, "bold"), pady=8, padx=3, bg="#3B3B3B", fg="#FFFFFF").grid(column=0, row=2)
-    Label(frame[1], text=f"{aliquotaDoINSS * 100}%", width=18, bd=1, relief="solid", anchor="w", font=("Segoe UI", 10, "bold"), pady=8, padx=3, bg="#3B3B3B", fg="#FFFFFF").grid(column=1, row=2)
+    Label(frame[1], text=f"{aliquotaDoINSS}%", width=18, bd=1, relief="solid", anchor="w", font=("Segoe UI", 10, "bold"), pady=8, padx=3, bg="#3B3B3B", fg="#FFFFFF").grid(column=1, row=2)
 
     # Dedução do INSS
     Label(frame[1], text="Dedução: ", width=18, bd=1, relief="solid", anchor="w", font=("Segoe UI", 10, "bold"), pady=8, padx=3, bg="#3B3B3B", fg="#FFFFFF").grid(column=0, row=3)

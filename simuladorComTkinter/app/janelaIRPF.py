@@ -70,7 +70,7 @@ def resultadoIRPF(janela, telaInicial, salario, segurado, pensao, dependentes, m
     dependentes = dependentes.get()
     modalidade = modalidade.get()
 
-    impostoDeRenda, aliquotaDoIRPF, deducaoDoIRPF, baseDeCalculo, desconto = calcularIRPF(salario, segurado, pensao, dependentes, modalidade)
+    impostoDeRenda, aliquotaDoIRPF, deducaoDoIRPF, baseDeCalculo, desconto, reducao = calcularIRPF(salario, segurado, pensao, dependentes, modalidade)
 
     for widget in janela.winfo_children():
         widget.destroy()
@@ -111,9 +111,13 @@ def resultadoIRPF(janela, telaInicial, salario, segurado, pensao, dependentes, m
     Label(frame[1], text="Desconto: ", width=18, bd=1, relief="solid", anchor="w", font=("Segoe UI", 10, "bold"), pady=8, padx=3, bg="#202020", fg="#FFFFFF").grid(column=0, row=6)
     Label(frame[1], text=f"R$ {desconto}", width=18, bd=1, relief="solid", anchor="w", font=("Segoe UI", 10, "bold"), pady=8, padx=3, bg="#202020", fg="#FFFFFF").grid(column=1, row=6)
 
+    # Redução
+    Label(frame[1], text="Redução: ", width=18, bd=1, relief="solid", anchor="w", font=("Segoe UI", 10, "bold"), pady=8, padx=3, bg="#202020", fg="#FFFFFF").grid(column=0, row=7)
+    Label(frame[1], text=f"R$ {reducao}", width=18, bd=1, relief="solid", anchor="w", font=("Segoe UI", 10, "bold"), pady=8, padx=3, bg="#202020", fg="#FFFFFF").grid(column=1, row=7)
+
     # Imposto de Renda
-    Label(frame[1], text="Imposto de Renda: ", width=18, bd=1, relief="solid", anchor="w", font=("Segoe UI", 10, "bold"), pady=8, padx=3, bg="#202020", fg="#FFFFFF").grid(column=0, row=7)
-    Label(frame[1], text=f"R$ {impostoDeRenda}", width=18, bd=1, relief="solid", anchor="w", font=("Segoe UI", 10, "bold"), pady=8, padx=3, bg="#202020", fg="#FFFFFF").grid(column=1, row=7)
+    Label(frame[1], text="Imposto de Renda: ", width=18, bd=1, relief="solid", anchor="w", font=("Segoe UI", 10, "bold"), pady=8, padx=3, bg="#202020", fg="#FFFFFF").grid(column=0, row=8)
+    Label(frame[1], text=f"R$ {impostoDeRenda}", width=18, bd=1, relief="solid", anchor="w", font=("Segoe UI", 10, "bold"), pady=8, padx=3, bg="#202020", fg="#FFFFFF").grid(column=1, row=8)
 
     # Botão de voltar para a tela inicial
     botaoVoltar = Button(frame[2], text="Voltar", height=1, width=15, bg="#3B3B3B", fg="#FFFFFF", activebackground="#323232", relief="flat", font=("Segoe UI", 9, "bold"), command=lambda: telaInicial())

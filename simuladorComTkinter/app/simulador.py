@@ -1,6 +1,6 @@
 from tkinter import *
-from .janelaINSS import inputINSS
-from .janelaIRPF import inputIRPF
+from janelaINSS import inputINSS
+from janelaIRPF import inputIRPF
 from src.arquivoAuxiliar import criadorDeFrames, hoverLigado, hoverDesligado
 
 def telaInicial():
@@ -40,6 +40,5 @@ janela = Tk()
 janela.title("Simulador de IRPF e INSS")
 janela.geometry("400x500")
 janela.configure(background="#202020")
-# janela.iconbitmap(procurarArquivo("logoOffice.ico"))
 
 telaInicial()
