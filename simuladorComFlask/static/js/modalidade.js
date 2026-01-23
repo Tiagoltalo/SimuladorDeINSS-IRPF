@@ -1,13 +1,13 @@
 function verificarModalidades() {
     let segurado = document.querySelector("select#segurado").value
-    let seguradoModalidades = ["segurado especial", "segurado facultativo", "contribuinte individual", "mei"]
-    let modalidades = ["empregado", "empregado doméstico", "trabalhador avulso"]
-    let selectModalidadade = document.querySelector("div#div-modalidades")
+    let seguradosComModalidades = ["segurado especial", "segurado facultativo", "contribuinte individual"]
+    let seguradosSemModalidades = ["empregado", "empregado doméstico", "trabalhador avulso"]
+    let selectModalidade = document.querySelector("div#div-modalidades")
 
 
-    if (seguradoModalidades.includes(segurado)) {
+    if (seguradosComModalidades.includes(segurado)) {
         if (segurado === "contribuinte individual") {
-            selectModalidadade.innerHTML = `  <label for="modalidades">Modalidades</label>
+            selectModalidade.innerHTML = `  <label for="modalidades">Modalidades</label>
                                     <select name="modalidade" id="modalidade">
                                         <option value="plano simplificado">Plano Simplificado</option>
                                         <option value="plano normal">Plano Normal</option>
@@ -16,7 +16,7 @@ function verificarModalidades() {
         }
 
         else if (segurado === "segurado facultativo") {
-            selectModalidadade.innerHTML = `  <label for="modalidades">Modalidades</label>
+            selectModalidade.innerHTML = `  <label for="modalidades">Modalidades</label>
                                     <select name="modalidade" id="modalidade">
                                         <option value="baixa renda">Baixa Renda</option>
                                         <option value="plano simplificado">Plano Simplificado</option>
@@ -25,7 +25,7 @@ function verificarModalidades() {
         }
 
         else if (segurado === "segurado especial") {
-            selectModalidadade.innerHTML = `  <label for="modalidades">Modalidades</label>
+            selectModalidade.innerHTML = `  <label for="modalidades">Modalidades</label>
                                     <select name="modalidade" id="modalidade">
                                         <option value="contribuição obrigatória">Contribuição Obrigatória</option>
                                         <option value="contribuição optativa">Contribuição Optativa</option>
@@ -33,8 +33,8 @@ function verificarModalidades() {
         }
     }
 
-    else if (modalidades.includes(segurado)) {
-        selectModalidadade.innerHTML = `<label for="modalidades">Modalidades</label>
+    else if (seguradosSemModalidades.includes(segurado)) {
+        selectModalidade.innerHTML = `<label for="modalidades">Modalidades</label>
                                 <select name="modalidade" id="modalidade">
                                     <option value="">Selecione</option>
                                 </select>`

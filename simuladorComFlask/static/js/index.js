@@ -1,7 +1,11 @@
-function telaINSS() {
-    window.location.href = "/formINSS";
+function telaInicial() {
+    window.location.href = "/";
 }
 
-function telaIRPF() {
-    window.location.href = "/formIRPF";
+function formulario() {
+    window.location.href = "/formulario";
+}
+
+function resultado() {
+    window.location.href = "/resultado";
 }

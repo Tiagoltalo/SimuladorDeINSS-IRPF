@@ -55,3 +55,11 @@ button:hover {
 button:active {
   transform: translateY(0);
 }
+
+.description {
+  margin-bottom: 25px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #cccccc;
+  text-align: justify;
+}
