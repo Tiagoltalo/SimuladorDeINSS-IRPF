@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import ttk
-from src.arquivoAuxiliar import tiposDeSegurado, verificarModalidades, criadorDeFrames, hoverLigado, hoverDesligado, verificarSeCamposForamPreenchidos
+from simuladorComTkinter.app.src.utilitarios import tiposDeSegurado, verificarModalidades, criadorDeFrames, hoverLigado, hoverDesligado, verificarSeCamposForamPreenchidos
 from src.funcaoIRPF import calcularIRPF
 
 # Tela que recebe as informações necessárias para o cálculo

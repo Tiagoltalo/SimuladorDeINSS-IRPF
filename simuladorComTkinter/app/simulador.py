@@ -1,7 +1,7 @@
 from tkinter import *
 from janelaINSS import inputINSS
 from janelaIRPF import inputIRPF
-from src.arquivoAuxiliar import criadorDeFrames, hoverLigado, hoverDesligado
+from simuladorComTkinter.app.src.utilitarios import criadorDeFrames, hoverLigado, hoverDesligado
 
 def telaInicial():
     for widget in janela.winfo_children():

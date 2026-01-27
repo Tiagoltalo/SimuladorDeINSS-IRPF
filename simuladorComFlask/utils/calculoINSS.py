@@ -1,6 +1,14 @@
-def calcularINSS(informacoesINSS):
+from constants import *
+
+def calcularINSS(data={}):
     deducaoPorDependente = 189.59
     descontoSimplificado = 607.20
+
+    salario = data.salario
+    tipoDeSegurado = data.segurado
+    pensao = data.pensao
+    dependentes = data.dependentes
+    modalidade = data.modalidade
 
     deducaoTotalDosDependente = deducaoPorDependente * dependentes
     

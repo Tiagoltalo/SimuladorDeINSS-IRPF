@@ -1,4 +1,4 @@
-from arquivoAuxiliar import seguradosComAliquotaProgressiva, seguradosSemAliquotaProgressiva, tiposDeModalidade
+from simuladorComTkinter.app.src.utilitarios import seguradosComAliquotaProgressiva, seguradosSemAliquotaProgressiva, tiposDeModalidade
 
 def calcularINSS(salario=0.0, tipoDeSegurado="", pensao=0.0, dependentes=0, modalidade=""):
     deducaoPorDependente = 189.59

@@ -1,4 +1,6 @@
 from flask import Flask, render_template, redirect, url_for, request
+from utils.calculoINSS import calcularINSS
+from utils.calculoIRPF import calcularIRPF
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'SENHA'
@@ -21,9 +23,9 @@ def resultado():
             "modalidade": request.form["modalidades"]
         }
     
-    print(data)
-    
-    return render_template("resultado.html")
+
+
+    return render_template("resultado.html", data=data)
 
 if __name__ == '__main__':
     app.run(debug=True)
