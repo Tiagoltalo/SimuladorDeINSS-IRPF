@@ -1,4 +1,4 @@
-from funcaoINSS import calcularINSS
+from .funcaoINSS import calcularINSS
 
 def tabelaDoIRPF(baseDeCalculo):
     if baseDeCalculo >= 2428.80 and baseDeCalculo <= 2826.65:
@@ -63,4 +63,4 @@ def calcularIRPF(salario=0.0, tipoDeSegurado="", pensao=0.0, dependentes=0, moda
     if impostoDeRenda < 0:
         impostoDeRenda = 0
 
-    return round(impostoDeRenda, 2), round((aliquotaIR * 100), 2), deducao, baseDeCalculo, desconto, round(reducao, 2)
+    return round(impostoDeRenda, 2), round((aliquotaIR * 100), 2), deducao, baseDeCalculo, round(desconto, 2), round(reducao, 2)

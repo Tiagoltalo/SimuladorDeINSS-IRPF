@@ -8,9 +8,9 @@
 </head>
 <body>
   <div class="container">
-    <h1>Simulador de IRPF</h1>
+    <h1>Simulador de IRPF e INSS</h1>
 
-    <form class="form" method="post" action="/resultado">
+    <form class="form" method="post">
       <div class="form-group">
         <label for="salario">Salário</label>
         <input type="number" id="salario" name="salario" placeholder="Informe o salário" />
@@ -41,20 +41,19 @@
 
       <div id="div-modalidades" class="form-group">
         <label for="modalidades">Modalidades</label>
-        <select id="modalidades" name="modalidades">
-          <option value="">Selecione</option>
+        <select id="modalidades" name="modalidade">
+          <option value=" ">Selecione</option>
         </select>
       </div>
 
       <div class="form-actions">
-        <button type="submit" class="submit-btn" onclick="resultado()">IRPF</button>
-        <button type="submit" class="submit-btn" onclick="resultado()">INSS</button>
+        <button type="submit" class="submit-btn" formaction="/resultadoIRPF">IRPF</button>
+        <button type="submit" class="submit-btn" formaction="/resultadoINSS">INSS</button>
         <button type="button" class="secondary-btn" onclick="telaInicial()">Voltar</button>
       </div>
     </form>
   </div>
 
-  <script src="{{ url_for('static', filename='js/index.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/modalidade.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/utilitarios.js') }}"></script>
 </body>
 </html>

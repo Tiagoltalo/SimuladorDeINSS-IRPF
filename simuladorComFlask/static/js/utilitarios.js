@@ -1,3 +1,11 @@
+function telaInicial() {
+    window.location.href = "/";
+}
+
+function formulario() {
+    window.location.href = "/formulario";
+}
+
 function verificarModalidades() {
     let segurado = document.querySelector("select#segurado").value
     let seguradosComModalidades = ["segurado especial", "segurado facultativo", "contribuinte individual"]
@@ -43,7 +51,7 @@ function verificarModalidades() {
     else {
         selectModalidade.innerHTML = `<label for="modalidades">Modalidades</label>
                                     <select id="modalidades" name="modalidades">
-                                        <option value="">Selecione</option>
+                                        <option value=" ">Selecione</option>
                                     </select>`
     }
 }

@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import ttk
-from simuladorComTkinter.app.src.utilitarios import tiposDeSegurado, verificarModalidades, criadorDeFrames, hoverLigado, hoverDesligado, verificarSeCamposForamPreenchidos
+from src.utilitarios import tiposDeSegurado, verificarModalidades, criadorDeFrames, hoverLigado, hoverDesligado, verificarSeCamposForamPreenchidos
 from src.funcaoINSS import calcularINSS
 
 # Tela que recebe as informações necessárias para o cálculo

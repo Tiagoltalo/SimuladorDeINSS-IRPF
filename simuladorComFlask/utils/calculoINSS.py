@@ -1,18 +1,18 @@
-from constants import *
+from .constantes import *
 
-def calcularINSS(data={}):
+def calcularINSS(dados):
+    salario = dados["salario"]
+    segurado = dados["segurado"]
+    dependentes = dados["dependentes"]
+    pensao = dados["pensao"]
+    modalidade = dados["modalidade"]
+    
     deducaoPorDependente = 189.59
     descontoSimplificado = 607.20
-
-    salario = data.salario
-    tipoDeSegurado = data.segurado
-    pensao = data.pensao
-    dependentes = data.dependentes
-    modalidade = data.modalidade
-
+    
     deducaoTotalDosDependente = deducaoPorDependente * dependentes
     
-    if tipoDeSegurado in seguradosComAliquotaProgressiva:
+    if segurado in seguradosComAliquotaProgressiva:
 
         # (Empregado, Empregado Doméstico e Trabalhador Avulso)
         # Salário de Contribuição (R$) | Alíquota | Dedução
@@ -43,7 +43,7 @@ def calcularINSS(data={}):
             if contribuicaoDoINSS > 996.17:
                 contribuicaoDoINSS = 996.17
 
-    elif tipoDeSegurado in seguradosSemAliquotaProgressiva:
+    elif segurado in seguradosSemAliquotaProgressiva:
 
         # As aliquotas são definidas por meio de três planos: baixa renda, plano simplificado e plano normal
 
@@ -80,7 +80,7 @@ def calcularINSS(data={}):
                 if contribuicaoDoINSS > 1695.11:
                     contribuicaoDoINSS = 1695.11
 
-        elif tipoDeSegurado == seguradosSemAliquotaProgressiva[2]: # segurado especial 
+        elif segurado == seguradosSemAliquotaProgressiva[2]: # segurado especial 
 
             if modalidade == tiposDeModalidade[3]: # contribuição obrigatória
                 aliquotaDoINSS = 0.013
@@ -100,5 +100,16 @@ def calcularINSS(data={}):
 
     # O desconto legal é dado pela soma da contribuição do INSS, da pensão e da dedução total dos dependentes
     descontoTotal = contribuicaoDoINSS + pensao + deducaoTotalDosDependente
+    
+    resultado = {
+        "baseDeCalculo": round(salario, 2),
+        "segurado": segurado,
+        "aliquota": round((aliquotaDoINSS * 100), 2),
+        "deducao": round(deducaoDoINSS, 2),
+        "contribuicaoDoINSS": round(contribuicaoDoINSS, 2),
+        "descontoSimplificado": descontoSimplificado,
+        "descontoTotal": descontoTotal,
+        "valorPorDependente": deducaoPorDependente
+    }
 
-    return salario, round(contribuicaoDoINSS, 2), round((aliquotaDoINSS * 100), 2), deducaoDoINSS, descontoSimplificado, descontoTotal
+    return resultado

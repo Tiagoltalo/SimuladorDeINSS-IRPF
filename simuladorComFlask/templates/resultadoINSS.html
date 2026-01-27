@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resultado da Simulação</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/resultado.css') }}" />
+</head>
+<body>
+  <div class="container">
+    <h1>Resultado do Cálculo</h1>
+
+    <div class="result-table">
+      <div class="row">
+        <div class="label">Base de cálculo</div>
+        <div class="value">R$ {{ resultado.baseDeCalculo }}</div>
+      </div>
+
+      <div class="row">
+        <div class="label">Segurado</div>
+        <div class="value">{{ resultado.segurado }}%</div>
+      </div>
+
+      <div class="row">
+        <div class="label">Alíquota</div>
+        <div class="value">{{ resultado.aliquota }}%</div>
+      </div>
+
+      <div class="row">
+        <div class="label">Dedução</div>
+        <div class="value">R$ {{ resultado.deducao }}</div>
+      </div>
+
+      <div class="row highlight">
+        <div class="label">Contribuição</div>
+        <div class="value">R$ {{ resultado.contribuicaoINSS }}</div>
+      </div>
+
+      <div class="buttons">
+        <button onclick="telaInicial()">INICIO</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/utilitarios.js') }}"></script>
+</body>
+</html>

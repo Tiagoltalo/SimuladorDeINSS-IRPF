@@ -1,7 +1,7 @@
 from tkinter import *
 from janelaINSS import inputINSS
 from janelaIRPF import inputIRPF
-from simuladorComTkinter.app.src.utilitarios import criadorDeFrames, hoverLigado, hoverDesligado
+from src.utilitarios import criadorDeFrames, hoverLigado, hoverDesligado
 
 def telaInicial():
     for widget in janela.winfo_children():
@@ -22,16 +22,16 @@ def telaInicial():
 
     # Eventos que dão o aspecto de hover nos botões
     botaoINSS.grid(column=0, row=0, pady=15)
-    botaoINSS.bind("<Enter>", lambda event: hoverLigado(botaoINSS))
-    botaoINSS.bind("<Leave>", lambda event: hoverDesligado(botaoINSS))
+    botaoINSS.bind("<Enter>", lambda: hoverLigado(botaoINSS))
+    botaoINSS.bind("<Leave>", lambda: hoverDesligado(botaoINSS))
 
     botaoIRPF.grid(column=0, row=1, pady=15)
-    botaoIRPF.bind("<Enter>", lambda event: hoverLigado(botaoIRPF))
-    botaoIRPF.bind("<Leave>", lambda event: hoverDesligado(botaoIRPF))
+    botaoIRPF.bind("<Enter>", lambda: hoverLigado(botaoIRPF))
+    botaoIRPF.bind("<Leave>", lambda: hoverDesligado(botaoIRPF))
 
     botaoSair.grid(column=0, row=2, pady=15)
-    botaoSair.bind("<Enter>", lambda event: hoverLigado(botaoSair))
-    botaoSair.bind("<Leave>", lambda event: hoverDesligado(botaoSair))
+    botaoSair.bind("<Enter>", lambda: hoverLigado(botaoSair))
+    botaoSair.bind("<Leave>", lambda: hoverDesligado(botaoSair))
 
     janela.mainloop()
 

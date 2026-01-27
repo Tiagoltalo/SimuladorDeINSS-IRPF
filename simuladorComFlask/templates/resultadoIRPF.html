@@ -13,44 +13,60 @@
     <div class="result-table">
       <div class="row">
         <div class="label">Base de cálculo</div>
-        <div class="value">R$ {{ baseDeCalculo }}</div>
+        <div class="value">R$ {{ resultado.baseDeCalculo }}</div>
+      </div>
+
+      <div class="row">
+        <div class="label">Segurado</div>
+        <div class="value">{{ resultado.segurado }}</div>
       </div>
 
       <div class="row">
         <div class="label">Alíquota</div>
-        <div class="value">{{ aliquota }}%</div>
+        <div class="value">{{ resultado.aliquota }}%</div>
       </div>
 
       <div class="row">
         <div class="label">Dedução</div>
-        <div class="value">R$ {{ deducao }}</div>
+        <div class="value">R$ {{ resultado.deducao }}</div>
       </div>
 
       <div class="row">
         <div class="label">Redução</div>
-        <div class="value">R$ {{ reducao }}</div>
+        <div class="value">R$ {{ resultado.reducao }}</div>
       </div>
 
       <div class="row">
         <div class="label">Desconto</div>
-        <div class="value">R$ {{ desconto }}</div>
+        <div class="value">R$ {{ resultado.desconto }}</div>
       </div>
 
       <div class="row">
         <div class="label">Dependentes</div>
-        <div class="value">{{ dependentes }}</div>
+        <div class="value">{{ resultado.dependentes }}</div>
+      </div>
+
+      <div class="row">
+        <div class="label">Valor por Dependente</div>
+        <div class="value">{{ resultado.valorPorDependente }}</div>
       </div>
 
       <div class="row">
         <div class="label">Pensão</div>
-        <div class="value">R$ {{ pensao }}</div>
+        <div class="value">R$ {{ resultado.pensao }}</div>
       </div>
 
       <div class="row highlight">
-        <div class="label">Resultado</div>
-        <div class="value">R$ {{ resultado }}</div>
+        <div class="label">Imposto De Renda</div>
+        <div class="value">R$ {{ resultado.impostoDeRenda }}</div>
+      </div>
+
+      <div class="buttons">
+        <button onclick="telaInicial()">INICIO</button>
       </div>
     </div>
   </div>
+
+  <script src="{{ url_for('static', filename='js/utilitarios.js') }}"></script>
 </body>
 </html>

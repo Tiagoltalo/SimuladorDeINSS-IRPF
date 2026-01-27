@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import ttk
-from simuladorComTkinter.app.src.utilitarios import tiposDeSegurado, verificarModalidades, criadorDeFrames, hoverLigado, hoverDesligado, verificarSeCamposForamPreenchidos
+from src.utilitarios import tiposDeSegurado, verificarModalidades, criadorDeFrames, hoverLigado, hoverDesligado, verificarSeCamposForamPreenchidos
 from src.funcaoIRPF import calcularIRPF
 
 # Tela que recebe as informações necessárias para o cálculo
@@ -52,14 +52,14 @@ def inputIRPF(janela, telaInicial):
     botaoVoltar.grid(column=2, row=0, padx=5)
 
     # Evento que emite uma mensagem de erro, caso os campos necessários não estejam preenchidos
-    botaoIRPF.bind("<Button-1>", lambda event: verificarSeCamposForamPreenchidos(frame[6], salario, segurado, modalidade))
+    botaoIRPF.bind("<Button-1>", lambda: verificarSeCamposForamPreenchidos(frame[6], salario, segurado, modalidade))
 
     # Hover do botão
-    botaoIRPF.bind("<Enter>", lambda event: hoverLigado(botaoIRPF))
-    botaoIRPF.bind("<Leave>", lambda event: hoverDesligado(botaoIRPF))
+    botaoIRPF.bind("<Enter>", lambda: hoverLigado(botaoIRPF))
+    botaoIRPF.bind("<Leave>", lambda: hoverDesligado(botaoIRPF))
 
-    botaoVoltar.bind("<Enter>", lambda event: hoverLigado(botaoVoltar))
-    botaoVoltar.bind("<Leave>", lambda event: hoverDesligado(botaoVoltar))
+    botaoVoltar.bind("<Enter>", lambda: hoverLigado(botaoVoltar))
+    botaoVoltar.bind("<Leave>", lambda: hoverDesligado(botaoVoltar))
 
 # Tela que mostra os resultados do cálculo
 def resultadoIRPF(janela, telaInicial, salario, segurado, pensao, dependentes, modalidade):
@@ -89,7 +89,7 @@ def resultadoIRPF(janela, telaInicial, salario, segurado, pensao, dependentes, m
 
     # Alíquota do IRPF
     Label(frame[1], text="Alíquota: ", width=18, bd=1, relief="solid", anchor="w", font=("Segoe UI", 10, "bold"), pady=8, padx=3, bg="#202020", fg="#FFFFFF").grid(column=0, row=1)
-    Label(frame[1], text=f"{aliquotaDoIRPF * 100}%", width=18, bd=1, relief="solid", anchor="w", font=("Segoe UI", 10, "bold"), pady=8, padx=3, bg="#202020", fg="#FFFFFF").grid(column=1, row=1)
+    Label(frame[1], text=f"{aliquotaDoIRPF}%", width=18, bd=1, relief="solid", anchor="w", font=("Segoe UI", 10, "bold"), pady=8, padx=3, bg="#202020", fg="#FFFFFF").grid(column=1, row=1)
 
     # Dedução do IRPF
     Label(frame[1], text="Dedução: ", width=18, bd=1, relief="solid", anchor="w", font=("Segoe UI", 10, "bold"), pady=8, padx=3, bg="#202020", fg="#FFFFFF").grid(column=0, row=2)
@@ -124,5 +124,5 @@ def resultadoIRPF(janela, telaInicial, salario, segurado, pensao, dependentes, m
     botaoVoltar.grid(column=1, row=0, padx=5, pady=30)
     
     # Hover do botão
-    botaoVoltar.bind("<Enter>", lambda event: hoverLigado(botaoVoltar))
-    botaoVoltar.bind("<Leave>", lambda event: hoverDesligado(botaoVoltar))
+    botaoVoltar.bind("<Enter>", lambda: hoverLigado(botaoVoltar))
+    botaoVoltar.bind("<Leave>", lambda: hoverDesligado(botaoVoltar))

@@ -1,1 +1,6 @@
 __pycache__
+__init__.py
+env
+venv
+.env
+.venv
