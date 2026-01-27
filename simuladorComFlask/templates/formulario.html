@@ -13,7 +13,7 @@
     <form class="form" method="post">
       <div class="form-group">
         <label for="salario">Salário</label>
-        <input type="number" id="salario" name="salario" placeholder="Informe o salário" required value="0.0" min="0.0" step="0.01"/>
+        <input type="text" id="salario" name="salario" placeholder="Informe o salário" required/>
       </div>
 
       <div class="form-group">
@@ -31,19 +31,15 @@
 
       <div class="form-group">
         <label for="dependentes">Dependentes</label>
-        <input type="number" id="dependentes" name="dependentes" placeholder="Quantidade de dependentes" value="0" min="0" step="1"/>
+        <input type="number" id="dependentes" name="dependentes" placeholder="Quantidade de dependentes" min="0" step="1"/>
       </div>
 
       <div class="form-group">
         <label for="pensao">Pensão</label>
-        <input type="number" id="pensao" name="pensao" placeholder="Valor da pensão" value="0.0" min="0.0" step="0.01"/>
+        <input type="text" id="pensao" name="pensao" placeholder="Valor da pensão"/>
       </div>
 
       <div id="div-modalidades" class="form-group">
-        <label for="modalidades">Modalidades</label>
-        <select id="modalidades" name="modalidade" required>
-          <option value=" ">Selecione</option>
-        </select>
       </div>
 
       <div class="form-actions">
@@ -55,5 +51,6 @@
   </div>
 
   <script src="{{ url_for('static', filename='js/utilitarios.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/mascaras.js') }}"></script>
 </body>
 </html>

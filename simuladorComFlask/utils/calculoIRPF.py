@@ -1,4 +1,5 @@
 from .calculoINSS import calcularINSS
+from .utilitarios import formatarMoeda
 
 def tabelaDoIRPF(baseDeCalculo):
     if baseDeCalculo >= 2428.80 and baseDeCalculo <= 2826.65:
@@ -72,16 +73,16 @@ def calcularIRPF(dados):
         impostoDeRenda = 0
         
     resultado = {
-        "baseDeCalculo": round(baseDeCalculo, 2),
+        "baseDeCalculo": formatarMoeda(round(baseDeCalculo, 2)),
         "segurado": segurado,
         "aliquota": round((aliquotaIR * 100), 2),
-        "deducao": round(deducao, 2),
-        "desconto": round(desconto, 2),
-        "reducao": round(reducao, 2),
-        "valorPorDependente": valorPorDependente,
+        "deducao": formatarMoeda(round(deducao, 2)),
+        "desconto": formatarMoeda(round(desconto, 2)),
+        "reducao": formatarMoeda(round(reducao, 2)),
+        "valorPorDependente": formatarMoeda(valorPorDependente),
         "dependentes": dependentes,
-        "pensao": pensao,
-        "impostoDeRenda": round(impostoDeRenda, 2)
+        "pensao": formatarMoeda(pensao),
+        "impostoDeRenda": formatarMoeda(round(impostoDeRenda, 2))
     }
 
     return resultado

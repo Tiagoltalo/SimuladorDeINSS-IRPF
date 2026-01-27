@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from re import sub
 from utils.calculoINSS import calcularINSS
 from utils.calculoIRPF import calcularIRPF
 
@@ -17,11 +18,11 @@ def formulario():
 @app.route('/resultadoINSS', methods=["POST"])
 def resultadoINSS():
     dados = {
-            "salario": float(request.form["salario"]),
+            "salario": float(sub(r"\D", "", request.form["salario"])),
             "segurado": request.form["segurado"],
             "dependentes": int(request.form["dependentes"]),
-            "pensao": float(request.form["pensao"]),
-            "modalidade": request.form["modalidade"],
+            "pensao": float(sub(r"\D", "", request.form["pensao"])),
+            "modalidade": (request.form["modalidade"] if "modalidede" in request.form else ""),
         }
     
     resultado = calcularINSS(dados)
@@ -32,11 +33,11 @@ def resultadoINSS():
 @app.route('/resultadoIRPF', methods=["POST"])
 def resultadoIRPF():
     dados = {
-        "salario": float(request.form["salario"]),
+        "salario": float(sub(r"\D", "", request.form["salario"])),
         "segurado": request.form["segurado"],
         "dependentes": int(request.form["dependentes"]),
-        "pensao": float(request.form["pensao"]),
-        "modalidade": request.form["modalidade"],
+        "pensao": float(sub(r"\D", "", request.form["pensao"])),
+        "modalidade": (request.form["modalidade"] if "modalidade" in request.form else ""),
     }
     
     resultado = calcularIRPF(dados)

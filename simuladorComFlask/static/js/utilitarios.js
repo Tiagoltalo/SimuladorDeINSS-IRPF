@@ -42,16 +42,6 @@ function verificarModalidades() {
     }
 
     else if (seguradosSemModalidades.includes(segurado)) {
-        selectModalidade.innerHTML = `<label for="modalidades">Modalidades</label>
-                                <select name="modalidade" id="modalidade">
-                                    <option value="">Selecione</option>
-                                </select>`
-    }
-
-    else {
-        selectModalidade.innerHTML = `<label for="modalidades">Modalidades</label>
-                                    <select id="modalidades" name="modalidades">
-                                        <option value=" ">Selecione</option>
-                                    </select>`
+        selectModalidade.innerHTML = ` `
     }
 }
