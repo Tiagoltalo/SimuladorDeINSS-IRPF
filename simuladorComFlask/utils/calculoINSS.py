@@ -1,4 +1,5 @@
 from .constantes import *
+from .utilitarios import formatarMoeda
 
 def calcularINSS(dados):
     salario = dados["salario"]
@@ -22,6 +23,7 @@ def calcularINSS(dados):
         # De 4.354,29 até 8.475,55	   | 14%      | 190,40
        
         if salario <= 1621:
+            deducaoDoINSS = 0
             aliquotaDoINSS = 0.075
             contribuicaoDoINSS = salario * aliquotaDoINSS
 
@@ -99,15 +101,18 @@ def calcularINSS(dados):
                         contribuicaoDoINSS = 1695.11
 
     # O desconto legal é dado pela soma da contribuição do INSS, da pensão e da dedução total dos dependente
-    descontoTotal = contribuicaoDoINSS + pensao + deducaoTotalDosDependente
-
+    try:
+        descontoTotal = contribuicaoDoINSS + pensao + deducaoTotalDosDependente
+    except UnboundLocalError:
+        descontoTotal = pensao + deducaoTotalDosDependente
+        contribuicaoDoINSS = 0
     
     resultado = {
-        "baseDeCalculo": round(salario, 2),
+        "baseDeCalculo": formatarMoeda(round(salario, 2)),
         "segurado": segurado,
         "aliquota": round((aliquotaDoINSS * 100), 2),
-        "deducao": round(deducaoDoINSS, 2),
-        "contribuicaoDoINSS": round(contribuicaoDoINSS, 2),
+        "deducao": formatarMoeda(round(deducaoDoINSS, 2)),
+        "contribuicaoDoINSS": formatarMoeda(round(contribuicaoDoINSS, 2)),
         "descontoSimplificado": descontoSimplificado,
         "descontoTotal": descontoTotal,
         "valorPorDependente": deducaoPorDependente

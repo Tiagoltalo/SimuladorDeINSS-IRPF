@@ -17,6 +17,10 @@ def tabelaDoIRPF(baseDeCalculo):
     elif baseDeCalculo > 4664.68:
         aliquotaIR = 0.275
         deducao = 908.73
+        
+    else:
+        deducao = 0
+        aliquotaIR = 0
 
     return deducao, aliquotaIR
 
@@ -68,6 +72,9 @@ def calcularIRPF(dados):
         deducao, aliquotaIR = tabelaDoIRPF(baseDeCalculo)
         reducao = 0
         impostoDeRenda = (baseDeCalculo * aliquotaIR) - deducao
+
+    if baseDeCalculo < 0:
+        baseDeCalculo = 0
 
     if impostoDeRenda < 0:
         impostoDeRenda = 0

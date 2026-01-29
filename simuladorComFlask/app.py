@@ -18,10 +18,10 @@ def formulario():
 @app.route('/resultadoINSS', methods=["POST"])
 def resultadoINSS():
     dados = {
-            "salario": float(sub(r"\D", "", request.form["salario"])),
+            "salario": float(sub(r"\D", "", request.form["salario"])) / 100,
             "segurado": request.form["segurado"],
             "dependentes": int(request.form["dependentes"]),
-            "pensao": float(sub(r"\D", "", request.form["pensao"])),
+            "pensao": float(sub(r"\D", "", request.form["pensao"])) / 100,
             "modalidade": (request.form["modalidade"] if "modalidede" in request.form else ""),
         }
     
@@ -33,10 +33,10 @@ def resultadoINSS():
 @app.route('/resultadoIRPF', methods=["POST"])
 def resultadoIRPF():
     dados = {
-        "salario": float(sub(r"\D", "", request.form["salario"])),
+        "salario": float(sub(r"\D", "", request.form["salario"])) / 100,
         "segurado": request.form["segurado"],
         "dependentes": int(request.form["dependentes"]),
-        "pensao": float(sub(r"\D", "", request.form["pensao"])),
+        "pensao": float(sub(r"\D", "", request.form["pensao"])) / 100,
         "modalidade": (request.form["modalidade"] if "modalidade" in request.form else ""),
     }
     
