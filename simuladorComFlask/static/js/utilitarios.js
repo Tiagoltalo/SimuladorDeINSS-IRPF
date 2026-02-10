@@ -9,7 +9,7 @@ function formulario() {
 function verificarModalidades() {
     let segurado = document.querySelector("select#segurado").value
     let seguradosComModalidades = ["segurado especial", "segurado facultativo", "contribuinte individual"]
-    let seguradosSemModalidades = ["empregado", "empregado doméstico", "trabalhador avulso"]
+    let     seguradosSemModalidades = ["empregado", "empregado doméstico", "trabalhador avulso"]
     let selectModalidade = document.querySelector("div#div-modalidades")
 
 
@@ -45,3 +45,4 @@ function verificarModalidades() {
         selectModalidade.innerHTML = ` `
     }
 }
+

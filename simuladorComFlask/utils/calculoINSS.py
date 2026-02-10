@@ -1,5 +1,5 @@
 from .constantes import *
-from .utilitarios import formatarMoeda
+from .utilitarios import formatarParaMoeda
 
 def calcularINSS(dados):
     salario = dados["salario"]
@@ -18,9 +18,9 @@ def calcularINSS(dados):
         # (Empregado, Empregado Doméstico e Trabalhador Avulso)
         # Salário de Contribuição (R$) | Alíquota | Dedução
         # Até 1.621,00			       | 7,5%     | 
-        # De 1.621,01 a 2.902,84	   | 9%       | 22,77
-        # De 2.902,85 até 4.354,28	   | 12%      | 106,59
-        # De 4.354,29 até 8.475,55	   | 14%      | 190,40
+        # De 1.621,01 a 2.902,84	   | 9%       | 24,32
+        # De 2.902,85 até 4.354,28	   | 12%      | 111,40
+        # De 4.354,29 até 8.475,55	   | 14%      | 198,49
        
         if salario <= 1621:
             deducaoDoINSS = 0
@@ -28,17 +28,17 @@ def calcularINSS(dados):
             contribuicaoDoINSS = salario * aliquotaDoINSS
 
         elif salario > 1621 and salario <= 2902.84:
-            deducaoDoINSS = 22.77
+            deducaoDoINSS = 24.32
             aliquotaDoINSS = 0.09
             contribuicaoDoINSS = salario * aliquotaDoINSS - deducaoDoINSS
 
         elif salario > 2902.85 and salario <= 4354.27:
-            deducaoDoINSS = 106.59
+            deducaoDoINSS = 111.40
             aliquotaDoINSS = 0.12
             contribuicaoDoINSS = salario * aliquotaDoINSS - deducaoDoINSS
 
         elif salario > 4354.28:
-            deducaoDoINSS = 190.40
+            deducaoDoINSS = 198.49
             aliquotaDoINSS = 0.14
             contribuicaoDoINSS = salario * aliquotaDoINSS - deducaoDoINSS
 
@@ -108,11 +108,11 @@ def calcularINSS(dados):
         contribuicaoDoINSS = 0
     
     resultado = {
-        "baseDeCalculo": formatarMoeda(round(salario, 2)),
+        "baseDeCalculo": formatarParaMoeda(round(salario, 2)),
         "segurado": segurado,
         "aliquota": round((aliquotaDoINSS * 100), 2),
-        "deducao": formatarMoeda(round(deducaoDoINSS, 2)),
-        "contribuicaoDoINSS": formatarMoeda(round(contribuicaoDoINSS, 2)),
+        "deducao": formatarParaMoeda(round(deducaoDoINSS, 2)),
+        "contribuicaoDoINSS": formatarParaMoeda(round(contribuicaoDoINSS, 2)),
         "descontoSimplificado": descontoSimplificado,
         "descontoTotal": descontoTotal,
         "valorPorDependente": deducaoPorDependente

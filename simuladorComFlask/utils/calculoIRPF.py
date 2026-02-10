@@ -1,5 +1,5 @@
 from .calculoINSS import calcularINSS
-from .utilitarios import formatarMoeda
+from .utilitarios import formatarParaMoeda
 
 def tabelaDoIRPF(baseDeCalculo):
     if baseDeCalculo >= 2428.80 and baseDeCalculo <= 2826.65:
@@ -64,7 +64,7 @@ def calcularIRPF(dados):
 
     elif baseDeCalculo > 5000 and baseDeCalculo <= 7350:
         deducao, aliquotaIR = tabelaDoIRPF(baseDeCalculo)
-        reducao = 978.62 - (salario * 0.133145)
+        reducao = 978.62 - (0.133145 * baseDeCalculo)
         impostoDeRenda = (baseDeCalculo * aliquotaIR) - deducao - reducao
 
     elif baseDeCalculo > 7350:
@@ -80,16 +80,16 @@ def calcularIRPF(dados):
         impostoDeRenda = 0
         
     resultado = {
-        "baseDeCalculo": formatarMoeda(round(baseDeCalculo, 2)),
+        "baseDeCalculo": formatarParaMoeda(round(baseDeCalculo, 2)),
         "segurado": segurado,
         "aliquota": round((aliquotaIR * 100), 2),
-        "deducao": formatarMoeda(round(deducao, 2)),
-        "desconto": formatarMoeda(round(desconto, 2)),
-        "reducao": formatarMoeda(round(reducao, 2)),
-        "valorPorDependente": formatarMoeda(valorPorDependente),
+        "deducao": formatarParaMoeda(round(deducao, 2)),
+        "desconto": formatarParaMoeda(round(desconto, 2)),
+        "reducao": formatarParaMoeda(round(reducao, 2)),
+        "valorPorDependente": formatarParaMoeda(valorPorDependente),
         "dependentes": dependentes,
-        "pensao": formatarMoeda(pensao),
-        "impostoDeRenda": formatarMoeda(round(impostoDeRenda, 2))
+        "pensao": formatarParaMoeda(pensao),
+        "impostoDeRenda": formatarParaMoeda(round(impostoDeRenda, 2))
     }
 
     return resultado

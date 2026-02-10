@@ -1,13 +1,13 @@
 from flask import Flask, render_template, request
-from re import sub
 from utils.calculoINSS import calcularINSS
 from utils.calculoIRPF import calcularIRPF
+from utils.utilitarios import tornarTextoBruto
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'SENHA'
 
 @app.route('/')
-def telaInicial():
+def telaInicial():    
     return render_template("index.html")
 
 @app.route('/formulario')
@@ -18,11 +18,11 @@ def formulario():
 @app.route('/resultadoINSS', methods=["POST"])
 def resultadoINSS():
     dados = {
-            "salario": float(sub(r"\D", "", request.form["salario"])) / 100,
+            "salario": float(tornarTextoBruto(request.form["salario"])) / 100,
             "segurado": request.form["segurado"],
             "dependentes": int(request.form["dependentes"]),
-            "pensao": float(sub(r"\D", "", request.form["pensao"])) / 100,
-            "modalidade": (request.form["modalidade"] if "modalidede" in request.form else ""),
+            "pensao": float(tornarTextoBruto(request.form["pensao"])) / 100,
+            "modalidade": (request.form["modalidade"] if "modalidade" in request.form else ""),
         }
     
     resultado = calcularINSS(dados)
@@ -33,10 +33,10 @@ def resultadoINSS():
 @app.route('/resultadoIRPF', methods=["POST"])
 def resultadoIRPF():
     dados = {
-        "salario": float(sub(r"\D", "", request.form["salario"])) / 100,
+        "salario": float(tornarTextoBruto(request.form["salario"])) / 100,
         "segurado": request.form["segurado"],
         "dependentes": int(request.form["dependentes"]),
-        "pensao": float(sub(r"\D", "", request.form["pensao"])) / 100,
+        "pensao": float(tornarTextoBruto(request.form["pensao"])) / 100,
         "modalidade": (request.form["modalidade"] if "modalidade" in request.form else ""),
     }
     
